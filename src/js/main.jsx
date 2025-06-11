@@ -1,18 +1,22 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
+import React from "react";
+import PropTypes from "prop-types";
+import "./SecondsCounter.css";
 
-//Bootstrap
-import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap"
+const SecondsCounter = ({ seconds }) => {
+    const pad = (num) => String(num).padStart(6, "0").split("");
 
-// index.css'
-import '../styles/index.css'
+    return (
+        <div className="counter">
+            <div className="digit"><i className="fas fa-clock"></i></div>
+            {pad(seconds).map((digit, index) => (
+                <div className="digit" key={index}>{digit}</div>
+            ))}
+        </div>
+    );
+};
 
-// components
-import Home from './components/Home';
+SecondsCounter.propTypes = {
+    seconds: PropTypes.number.isRequired
+};
 
-ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <Home/>
-  </React.StrictMode>,
-)
+export default SecondsCounter;
